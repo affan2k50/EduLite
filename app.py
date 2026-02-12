@@ -116,6 +116,8 @@ def home():
     # Get names and marks for chart
     cursor.execute("SELECT name, marks FROM students")
     chart_data = cursor.fetchall()
+    cursor.execute("SELECT COUNT(*) FROM students")
+    total_students = cursor.fetchone()[0]
 
     conn.close()
 
@@ -125,8 +127,11 @@ def home():
     average=avg,
     topper=topper,
     weak_students=weak_students,
-    chart_data=chart_data
+    chart_data=chart_data,
+    passing_marks=35,
+    total_students=total_students
 )
+
 
 @app.route("/delete/<int:id>")
 def delete_student(id):

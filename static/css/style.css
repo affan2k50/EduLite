@@ -1,0 +1,151 @@
+/* Dark Neon Theme */
+
+body {
+    background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background: #0f3460 !important;
+    box-shadow: 0 0 15px #00f5ff;
+}
+
+/* Cards */
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    color: white;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+    background-color: #1e1e2f;
+    border: 1px solid #00f5ff;
+    color: white;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 10px #00f5ff;
+    border-color: #00f5ff;
+}
+
+/* Buttons */
+.btn-success {
+    background: #00f5ff;
+    border: none;
+    color: black;
+    font-weight: bold;
+}
+
+.btn-success:hover {
+    background: #00c3cc;
+    box-shadow: 0 0 15px #00f5ff;
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: #16213e;
+    border: 1px solid #00f5ff;
+}
+
+.btn-secondary:hover {
+    background: #0f3460;
+    box-shadow: 0 0 10px #00f5ff;
+}
+
+/* Headings */
+h1, h3 {
+    color: #00f5ff;
+}
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,255,255,0.15), transparent 70%);
+    animation: glowMove 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes glowMove {
+    0% { transform: translate(-25%, -25%); }
+    50% { transform: translate(0%, 0%); }
+    100% { transform: translate(-25%, -25%); }
+}
+/* FULL DARK TABLE OVERRIDE */
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table,
+.custom-table tbody,
+.custom-table tr,
+.custom-table td,
+.custom-table th {
+    background-color: #111827 !important;
+    color: #ffffff !important;
+}
+
+.custom-table th {
+    background-color: #0f3460 !important;
+    color: #00f5ff !important;
+    font-weight: bold;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px;
+    border: 1px solid #00f5ff;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #1f2937 !important;
+}
+
+.custom-table tr:hover td {
+    background-color: rgba(0, 255, 255, 0.15) !important;
+}
+/* Neon Delete Button */
+.neon-delete {
+    background: transparent;
+    border: 1px solid #ff4d6d;
+    color: #ff4d6d;
+    font-weight: bold;
+}
+
+.neon-delete:hover {
+    background: #ff4d6d;
+    color: white;
+    box-shadow: 0 0 10px #ff4d6d;
+}
+
+/* Neon Edit Button */
+.neon-edit {
+    background: transparent;
+    border: 1px solid #00f5ff;
+    color: #00f5ff;
+    font-weight: bold;
+}
+
+.neon-edit:hover {
+    background: #00f5ff;
+    color: black;
+    box-shadow: 0 0 10px #00f5ff;
+}
+.neon-delete {
+    animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+    0% { box-shadow: 0 0 5px #ff4d6d; }
+    50% { box-shadow: 0 0 15px #ff4d6d; }
+    100% { box-shadow: 0 0 5px #ff4d6d; }
+}
