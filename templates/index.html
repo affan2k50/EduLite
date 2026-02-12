@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EduLite Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+    <title>EduLite Dashboard</title>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+
+        <span class="navbar-brand mb-0 h1">
+            EduLite - Academic Dashboard
+        </span>
+
+        <a href="/calculator" class="btn btn-light btn-sm">
+            Marks Calculator
+        </a>
+
+    </div>
+</nav>
+
+
+    <div class="container mt-4">
+
+    <h1>EduLite - Student Records</h1>
+
+    <a href="/add" class="btn btn-primary mb-3">Add Student</a>
+
+
+<div class="row mt-4">
+
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Class Average</h5>
+                <h3>{{ average|round(2) if average else 0 }}</h3>
+            </div>
+        </div>
+        
+    </div>
+    <div class="card shadow mt-4">
+    <div class="card-body">
+        <h4 class="mb-3">Marks Distribution</h4>
+        <canvas id="marksChart"></canvas>
+    </div>
+</div>
+
+
+    {% if topper %}
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Topper</h5>
+                <h3>{{ topper[0] }}</h3>
+                <p>{{ topper[1] }} - {{ topper[2] }} marks</p>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Students Below 35%</h5>
+
+                <h3>{{ weak_students|length }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<h3 class="mt-4">Student Records</h3>
+
+
+
+    <table class="table table-hover table-bordered shadow">
+
+
+        <tr>
+            <th>ID</th>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Grade</th>
+                <th>Action</th>
+
+        </tr>
+
+        {% for student in students %}
+       <tr>
+   <td>{{ student[0] }}</td>
+<td>{{ student[1] }}</td>
+<td>{{ student[2] }}</td>
+<td>{{ student[3] }}</td>
+<td>{{ student[4] }}</td>
+<td>
+    <a href="/delete/{{ student[0] }}" class="btn btn-dange btrn-sm">Delete</a>
+    <a href="/edit/{{ student[0] }}" class="btn btn-warning btn-sm">Edit</a>
+
+</td>
+
+</tr>
+
+        {% endfor %}
+    </table>
+</div>
+<script>
+    const chartData = {{ chart_data | tojson }};
+
+    const labels = chartData.map(item => item[0]);
+    const marks = chartData.map(item => item[1]);
+
+    const ctx = document.getElementById('marksChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Marks',
+                data: marks,
+                backgroundColor: 'rgba(54, 162, 235, 0.7)'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
